@@ -5,7 +5,7 @@
     /// </summary>
     /// <typeparam name="TSource">typeof source object</typeparam>
     /// <typeparam name="TDetail">typeof result detail</typeparam>
-    public class ValidationResult<TSource, TDetail>
+    public struct ValidationResult<TSource, TDetail>
     {
         /// <summary>
         /// Source object
