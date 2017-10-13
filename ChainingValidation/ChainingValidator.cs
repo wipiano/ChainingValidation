@@ -14,6 +14,16 @@ namespace ChainingValidation
             return new FirstValidator<TSource, TDetail>(validator, detail);
         }
 
+        /// <summary>
+        /// Create a simple validator
+        /// </summary>
+        /// <param name="validator"></param>
+        /// <typeparam name="TSource"></typeparam>
+        /// <returns></returns>
+        public static SimpleValidator<TSource> CreateSimple<TSource>(Func<TSource, bool> validator)
+        {
+            return new FirstSimpleValidator<TSource>(validator);
+        }
         
         /// <summary>
         /// Add validator
@@ -26,6 +36,19 @@ namespace ChainingValidation
         public static Validator<TSource, TDetail> Add<TSource, TDetail>(this Validator<TSource, TDetail> prev, Func<TSource, bool> validator, TDetail detail)
         {
             return new Validator<TSource, TDetail>(prev, validator, detail);
+        }
+
+        /// <summary>
+        /// Add validator
+        /// </summary>
+        /// <param name="prev"></param>
+        /// <param name="validator"></param>
+        /// <typeparam name="TSource"></typeparam>
+        /// <returns></returns>
+        public static SimpleValidator<TSource> Add<TSource>(this SimpleValidator<TSource> prev,
+            Func<TSource, bool> validator)
+        {
+            return new SimpleValidator<TSource>(prev, validator);
         }
     }
 }
