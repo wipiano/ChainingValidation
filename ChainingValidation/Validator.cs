@@ -1,10 +1,7 @@
-﻿namespace ChainingValidation
+﻿using System;
+
+namespace ChainingValidation
 {
-    /// <summary>
-    /// delegate to validate object
-    /// </summary>
-    public delegate (bool isValid, TDetail detail) ValidatorFunc<TSource, TDetail>(TSource source);
-    
     /// <summary>
     /// Validator
     /// </summary>
@@ -20,7 +17,12 @@
         /// <summary>
         /// function to validate object
         /// </summary>
-        private readonly ValidatorFunc<TSource, TDetail> _validator;
+        private readonly Func<TSource, bool> _validator;
+
+        /// <summary>
+        /// validation result detail object that is returned when this validation is failed 
+        /// </summary>
+        private readonly TDetail _detail;
 
         /// <summary>
         /// Validate object
@@ -33,7 +35,7 @@
 
             return prevResult.IsValid ? ValidateThis(source) : prevResult;
         }
-
+        
         /// <summary>
         /// Evaluate own
         /// </summary>
@@ -41,7 +43,8 @@
         /// <returns></returns>
         protected ValidationResult<TSource, TDetail> ValidateThis(TSource source)
         {
-            (bool isValid, TDetail detail) = _validator(source);
+            bool isValid = _validator(source);
+            TDetail detail = isValid ? default(TDetail) : _detail;
             return new ValidationResult<TSource, TDetail>(source, detail, isValid);
         }
 
@@ -50,10 +53,12 @@
         /// </summary>
         /// <param name="prev">previous validator</param>
         /// <param name="validator">function to validate object</param>
-        internal Validator(Validator<TSource, TDetail> prev, ValidatorFunc<TSource, TDetail> validator)
+        /// <param name="detail">validation detail if failed</param>
+        internal Validator(Validator<TSource, TDetail> prev, Func<TSource, bool> validator, TDetail detail)
         {
             this.Prev = prev;
             _validator = validator;
+            _detail = detail;
         }
     }
 
@@ -64,8 +69,8 @@
     /// <typeparam name="TDetail"></typeparam>
     internal sealed class FirstValidator<TSource, TDetail> : Validator<TSource, TDetail>
     {
-        internal FirstValidator(ValidatorFunc<TSource, TDetail> validator)
-            :base (null, validator)
+        internal FirstValidator(Func<TSource, bool> validator, TDetail detail)
+            :base (null, validator, detail)
         {
         }
 
