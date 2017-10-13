@@ -12,7 +12,4 @@
     </PackageTags>
     <PackageProjectUrl>https://github.com/wipiano/ChainingValidation</PackageProjectUrl>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Validators" />
-  </ItemGroup>
 </Project>
