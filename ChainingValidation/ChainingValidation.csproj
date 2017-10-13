@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>ChainingValidation</PackageId>
@@ -8,7 +8,8 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>first</PackageReleaseNotes>
     <Copyright>Copyright 2017 (c) wipiano. All rights reserved.</Copyright>
-    <PackageTags></PackageTags>
+    <PackageTags>
+    </PackageTags>
     <PackageProjectUrl>https://github.com/wipiano/ChainingValidation</PackageProjectUrl>
   </PropertyGroup>
 </Project>
