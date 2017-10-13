@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>ChainingValidation</PackageId>
-    <PackageVersion>0.0.1</PackageVersion>
+    <PackageVersion>0.0.2</PackageVersion>
     <Authors>wipiano</Authors>
     <Description>Lightweight method chaining for validation</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -12,4 +12,7 @@
     </PackageTags>
     <PackageProjectUrl>https://github.com/wipiano/ChainingValidation</PackageProjectUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Validators" />
+  </ItemGroup>
 </Project>
