@@ -5,6 +5,15 @@ namespace ChainingValidation
     public static class ChainingValidator
     {
         /// <summary>
+        /// Create empty Validator
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TDetail"></typeparam>
+        /// <returns></returns>
+        public static Validator<TSource, TDetail> Create<TSource, TDetail>()
+            => Create<TSource, TDetail>(source => true, default(TDetail));
+        
+        /// <summary>
         /// Create a Validator
         /// </summary>
         /// <param name="validator"></param>
@@ -14,6 +23,14 @@ namespace ChainingValidation
             return new FirstValidator<TSource, TDetail>(validator, detail);
         }
 
+        /// <summary>
+        /// Create a empty SimpleValidator
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <returns></returns>
+        public static SimpleValidator<TSource> CreateSimple<TSource>()
+            => CreateSimple<TSource>(source => true);
+        
         /// <summary>
         /// Create a simple validator
         /// </summary>
